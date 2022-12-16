@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<title>Clock</title>
+<meta name="viewport" content="width=device-width" />
+<style>
+    html,body{
+        font-family:'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+        margin:0;
+        height:100%;
+        overflow:hidden;
+        background: #fff;
+    }
+    h1{
+    margin: 0;
+    font-size: 12vw;
+    font-weight: normal;
+    }
+    .clock{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 80vh;
+        color: #222;
+        z-index: 5;
+    }
+    .date{
+        text-align: center;
+        font-size: 2vw;
+        z-index: 10;
+    }
+</style>
+</head>
+<body>
+    <p><div class="date" id="date" alt="Date"></div></p>
+    <div class="clock">
+        <h1><div class="time" alt="time" id="time"></div></h1>
+    </div>
+<script>
+`use strict`;
+function refreshTime() {
+  const timeDisplay = document.getElementById("time");
+  const dateDisplay = document.getElementById("date");
+  const dateString = new Date().toLocaleTimeString();
+  const currentDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  dateDisplay.textContent = currentDate.toLocaleDateString('en-au', options);
+  timeDisplay.textContent = dateString;
+}
+  setInterval(refreshTime, 1000);
+
+</script>
+</body>
+</html>
