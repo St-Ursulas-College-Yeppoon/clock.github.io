@@ -1,2 +1,2 @@
-# stuitservice.github.io
+# clock.github.io
 Clock used for exams
