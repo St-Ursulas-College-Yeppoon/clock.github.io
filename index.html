@@ -42,11 +42,10 @@
 function refreshTime() {
   const timeDisplay = document.getElementById("time");
   const dateDisplay = document.getElementById("date");
-  const dateString = new Date().toLocaleTimeString();
-  const currentDate = new Date();
+  const now = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  dateDisplay.textContent = currentDate.toLocaleDateString('en-au', options);
-  timeDisplay.textContent = dateString;
+  dateDisplay.textContent = now.toLocaleDateString('en-au', options);
+  timeDisplay.textContent = now.toLocaleTimeString('en-au');
 }
   setInterval(refreshTime, 1000);
 
