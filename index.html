@@ -4,17 +4,20 @@
 <title>Clock</title>
 <meta name="viewport" content="width=device-width" />
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
+
     html,body{
-        font-family: Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Roboto Mono', Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
         margin:0;
         height:100%;
         overflow:hidden;
         background: #fff;
+        color: #0066B1;
     }
     h1{
     margin: 0;
     font-size: 12vw;
-    font-weight: normal;
+    font-weight: bold;
     }
     .clock{
         display: flex;
@@ -22,7 +25,7 @@
         align-items: center;
         text-align: center;
         min-height: 80vh;
-        color: #222;
+        color: #0066B1;
         z-index: 5;
     }
     .date{
@@ -38,17 +41,24 @@
         <h1><div class="time" alt="time" id="time"></div></h1>
     </div>
 <script>
-`use strict`;
+"use strict";
+
 function refreshTime() {
   const timeDisplay = document.getElementById("time");
   const dateDisplay = document.getElementById("date");
-  const now = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  dateDisplay.textContent = now.toLocaleDateString('en-au', options);
-  timeDisplay.textContent = now.toLocaleTimeString('en-au');
+  
+  fetch('https://worldtimeapi.org/api/ip')
+    .then(response => response.json())
+    .then(data => {
+      const date = new Date(data.datetime);
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      dateDisplay.textContent = date.toLocaleDateString('en-au', options);
+      timeDisplay.textContent = date.toLocaleTimeString('en-au');
+    })
+    .catch(error => console.error('Error fetching time:', error));
 }
-  setInterval(refreshTime, 1000);
 
+setInterval(refreshTime, 1000);
 </script>
 </body>
 </html>
