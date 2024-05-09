@@ -7,38 +7,34 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
 
     html,body{
-        font-family: 'Roboto Mono', Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
-        margin:0;
-        height:100%;
-        overflow:hidden;
         background: #fff;
         color: #0066B1;
+        font-family: 'Roboto Mono', Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+        margin:0;
+        padding:0;
+        border:0;
+        overflow:hidden;
     }
-    h1{
-    margin: 0;
-    font-size: 12vw;
-    font-weight: bold;
-    }
-    .clock{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .content{
         text-align: center;
-        min-height: 80vh;
-        color: #0066B1;
-        z-index: 5;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
     }
-    .date{
-        text-align: center;
-        font-size: 2vw;
-        z-index: 10;
+    #time{
+        font-size: 12vw;
+    }
+    #date{
+        font-size: 4vw;
     }
 </style>
 </head>
 <body>
-    <p><div class="date" id="date" alt="Date"></div></p>
-    <div class="clock">
-        <h1><div class="time" alt="time" id="time"></div></h1>
+    <div class="content">
+        <div id="date" alt="Date">Date</div>
+        <div id="time" alt="time">Time</div>
     </div>
 <script>
 "use strict";
@@ -47,7 +43,7 @@ function refreshTime() {
   const timeDisplay = document.getElementById("time");
   const dateDisplay = document.getElementById("date");
   
-  fetch('https://worldtimeapi.org/api/ip')
+  fetch('https://worldtimeapi.org/api/Australia/Brisbane')
     .then(response => response.json())
     .then(data => {
       const date = new Date(data.datetime);
