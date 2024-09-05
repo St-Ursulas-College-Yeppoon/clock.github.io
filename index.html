@@ -1,54 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-AU">
-<head>
-<title>Clock</title>
-<meta name="viewport" content="width=device-width" />
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
+    <head>
+        <title>Clock</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono");
 
-    html,body{
-        background: #fff;
-        color: #0066B1;
-        font-family: 'Roboto Mono', Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
-        margin:0;
-        padding:0;
-        border:0;
-        overflow:hidden;
-    }
-    .content{
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%)
-    }
-    #time{
-        font-size: 12vw;
-    }
-    #date{
-        font-size: 4vw;
-    }
-</style>
-</head>
-<body>
-    <div class="content">
-        <div id="date" alt="Date">Date</div>
-        <div id="time" alt="time">Time</div>
-    </div>
-<script>
-"use strict";
+            html,
+            body {
+                background: #fff;
+                color: #0066b1;
+                font-family: "Roboto Mono", Arial, "Segoe UI Light", Tahoma,
+                    Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                overflow: hidden;
+            }
+            .content {
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+            }
+            #time {
+                font-size: 12vw;
+            }
+            #date {
+                font-size: 4vw;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div id="date" alt="Date">Date</div>
+            <div id="time" alt="time">Time</div>
+        </div>
+        <script>
+            "use strict";
 
-function refreshTime() {
-  const timeDisplay = document.getElementById("time");
-  const dateDisplay = document.getElementById("date");
-  const now = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  dateDisplay.textContent = now.toLocaleDateString('en-au', options);
-  timeDisplay.textContent = now.toLocaleTimeString('en-au');
-}
+            function refreshTime() {
+                const timeDisplay = document.getElementById("time");
+                const dateDisplay = document.getElementById("date");
+                const now = new Date();
+                const options = {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                };
+                dateDisplay.textContent = now.toLocaleDateString(
+                    "en-au",
+                    options
+                );
+                timeDisplay.textContent = now.toLocaleTimeString("en-au");
+            }
 
-setInterval(refreshTime, 10);
-</script>
-</body>
+            setInterval(refreshTime, 10);
+        </script>
+    </body>
 </html>
