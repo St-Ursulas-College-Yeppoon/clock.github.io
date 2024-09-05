@@ -4,57 +4,51 @@
 <title>Clock</title>
 <meta name="viewport" content="width=device-width" />
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
-
     html,body{
-        background: #fff;
-        color: #0066B1;
-        font-family: 'Roboto Mono', Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: Arial, 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
         margin:0;
-        padding:0;
-        border:0;
+        height:100%;
         overflow:hidden;
+        background: #fff;
     }
-    .content{
+    h1{
+    margin: 0;
+    font-size: 12vw;
+    font-weight: normal;
+    }
+    .clock{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%)
+        min-height: 80vh;
+        color: #222;
+        z-index: 5;
     }
-    #time{
-        font-size: 12vw;
-    }
-    #date{
-        font-size: 4vw;
+    .date{
+        text-align: center;
+        font-size: 2vw;
+        z-index: 10;
     }
 </style>
 </head>
 <body>
-    <div class="content">
-        <div id="date" alt="Date">Date</div>
-        <div id="time" alt="time">Time</div>
+    <p><div class="date" id="date" alt="Date"></div></p>
+    <div class="clock">
+        <h1><div class="time" alt="time" id="time"></div></h1>
     </div>
 <script>
-"use strict";
-
+`use strict`;
 function refreshTime() {
   const timeDisplay = document.getElementById("time");
   const dateDisplay = document.getElementById("date");
-  
-  fetch('https://worldtimeapi.org/api/Australia/Brisbane')
-    .then(response => response.json())
-    .then(data => {
-      const date = new Date(data.datetime);
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      dateDisplay.textContent = date.toLocaleDateString('en-au', options);
-      timeDisplay.textContent = date.toLocaleTimeString('en-au');
-    })
-    .catch(error => console.error('Error fetching time:', error));
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  dateDisplay.textContent = now.toLocaleDateString('en-au', options);
+  timeDisplay.textContent = now.toLocaleTimeString('en-au');
 }
+  setInterval(refreshTime, 1000);
 
-setInterval(refreshTime, 1000);
 </script>
 </body>
 </html>
